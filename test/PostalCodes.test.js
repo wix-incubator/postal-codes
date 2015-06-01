@@ -43,7 +43,8 @@ describe("PostalCodes", function() {
 		}).then(function(value) {
 			expect(value.countryCode).to.be.equal("US");
 			expect(value.postalCode).to.be.equal("90210");
-			expect(value.polygon).to.not.be.empty;
+			expect(value.polygons).to.not.be.empty;
+			expect(value.polygons[0]).to.not.be.empty;
 		}, function(error) {
 			assert.fail("Supported postal code returned " + JSON.stringify(error));
 		});
