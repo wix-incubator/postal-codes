@@ -5,8 +5,18 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 module.exports = function(params) {
 	var supportedCountries = ["AU", "CA", "FR", "GB", "US"];
 	
+	function normalize(countryCode, postalCode) {
+		switch (countryCode) {
+			case "CA": // fall-through
+			case "GB":
+				return postalCode.trim().split(" ")[0].toUpperCase();
+			default:
+				return postalCode.trim();
+		}
+	}
+	
 	function getJsonUrl(countryCode, postalCode) {
-		return "https://storage.googleapis.com/postal-codes/" + countryCode + "/" + postalCode + ".json";
+		return "https://storage.googleapis.com/postal-codes/" + countryCode + "/" + normalize(countryCode, postalCode) + ".json";
 	}
 	
 	var self = {};

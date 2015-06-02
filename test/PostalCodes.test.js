@@ -49,4 +49,16 @@ describe("PostalCodes", function() {
 			assert.fail("Supported postal code returned " + JSON.stringify(error));
 		});
     });
+	
+    it ('normalizes GB postal codes', function() {
+		return postalCodes.area({
+			countryCode: "GB",
+			postalCode: "aB11 6eQ"
+		}).then(function(value) {
+			expect(value.countryCode).to.be.equal("GB");
+			expect(value.id).to.be.equal("AB11");
+		}, function(error) {
+			assert.fail("GB postal code was not normalized: " + JSON.stringify(error));
+		});
+    });
 });
