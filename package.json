@@ -1,6 +1,6 @@
 {
   "name": "postal-codes",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Maps postal codes to polygons",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
   },
   "dependencies": {
 	"lodash": "^3.9.3",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+	"xmlhttprequest": "^1.7.0"
   }
 }

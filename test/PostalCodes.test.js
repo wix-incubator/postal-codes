@@ -42,7 +42,7 @@ describe("PostalCodes", function() {
 			postalCode: "90210"
 		}).then(function(value) {
 			expect(value.countryCode).to.be.equal("US");
-			expect(value.postalCode).to.be.equal("90210");
+			expect(value.id).to.be.equal("90210");
 			expect(value.polygons).to.not.be.empty;
 			expect(value.polygons[0]).to.not.be.empty;
 		}, function(error) {
