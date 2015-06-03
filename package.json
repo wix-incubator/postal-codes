@@ -14,7 +14,7 @@
     "postal",
     "codes",
     "zip",
-	"polygon"
+    "polygon"
   ],
   "author": "Wix Restaurants",
   "license": "Apache",
@@ -27,8 +27,11 @@
     "mocha": "^2.2.1"
   },
   "dependencies": {
-	"lodash": "^3.9.3",
+    "lodash": "^3.9.3",
     "q": "^1.4.1",
-	"xmlhttprequest": "^1.7.0"
+    "xmlhttprequest": "^1.7.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
