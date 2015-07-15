@@ -2,6 +2,7 @@ var chai = require('chai');
 var expect = chai.expect;
 var assert = chai.assert;
 var PostalCodes = require("../src/PostalCodes.js");
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 describe("PostalCodes", function() {
 	var postalCodes = new PostalCodes();
@@ -15,7 +16,8 @@ describe("PostalCodes", function() {
     it ('gracefully fails for unsupported country', function() {
 		return postalCodes.area({
 			countryCode: "XXX",
-			postalCode: "ignored"
+			postalCode: "ignored",
+            XMLHttpRequest : XMLHttpRequest
 		}).then(function(value) {
 			// Unexpected success
 			assert.fail("Invalid country returned " + JSON.stringify(value));
@@ -27,7 +29,8 @@ describe("PostalCodes", function() {
     it ('gracefully fails for unsupported postal code', function() {
 		return postalCodes.area({
 			countryCode: "US",
-			postalCode: "XXX"
+			postalCode: "XXX",
+            XMLHttpRequest : XMLHttpRequest
 		}).then(function(value) {
 			// Unexpected success
 			assert.fail("Invalid US postal code returned " + JSON.stringify(value));
@@ -39,7 +42,8 @@ describe("PostalCodes", function() {
     it ('successfully returns polygons for supported postal codes', function() {
 		return postalCodes.area({
 			countryCode: "US",
-			postalCode: "90210"
+			postalCode: "90210",
+            XMLHttpRequest : XMLHttpRequest
 		}).then(function(value) {
 			expect(value.countryCode).to.be.equal("US");
 			expect(value.id).to.be.equal("90210");
@@ -53,7 +57,8 @@ describe("PostalCodes", function() {
     it ('normalizes GB postal codes', function() {
 		return postalCodes.area({
 			countryCode: "GB",
-			postalCode: "aB11 6eQ"
+			postalCode: "aB11 6eQ",
+            XMLHttpRequest : XMLHttpRequest
 		}).then(function(value) {
 			expect(value.countryCode).to.be.equal("GB");
 			expect(value.id).to.be.equal("AB11");

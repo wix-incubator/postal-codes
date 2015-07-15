@@ -24,12 +24,12 @@
   "homepage": "https://github.com/wix/postal-codes",
   "devDependencies": {
     "chai": "^2.2.0",
-    "mocha": "^2.2.1"
+    "mocha": "^2.2.1",
+    "xmlhttprequest": "^1.7.0"
   },
   "dependencies": {
     "lodash": "^3.9.3",
-    "q": "^1.4.1",
-    "xmlhttprequest": "^1.7.0"
+    "q": "^1.4.1"
   },
   "directories": {
     "test": "test"

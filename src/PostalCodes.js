@@ -1,6 +1,5 @@
-var Q              = require('q');
-var _              = require('lodash');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var Q = require('q');
+var _ = require('lodash');
 
 module.exports = function(params) {
 	var supportedCountries = ["AU", "CA", "FR", "GB", "US"];
@@ -35,6 +34,7 @@ module.exports = function(params) {
 		params = params || {};
 		var countryCode = params.countryCode;
 		var postalCode = params.postalCode;
+        var XMLHttpRequest = params.XMLHttpRequest || window.XMLHttpRequest;
 		
 		var deferred = Q.defer();
 		
