@@ -1,6 +1,6 @@
 {
   "name": "postal-codes",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Maps postal codes to polygons",
   "main": "index.js",
   "scripts": {
