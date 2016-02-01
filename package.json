@@ -4,7 +4,10 @@
   "description": "Maps postal codes to polygons",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "mocha --compilers js:babel/register",
+    "prepublish": "npm test",
+    "build": ":",
+    "release": "wnpm-release -- --no-shrinkwrap"
   },
   "repository": {
     "type": "git",
@@ -23,9 +26,13 @@
   },
   "homepage": "https://github.com/wix/postal-codes",
   "devDependencies": {
+    "babel": "^5.8.21",
+    "babel-core": "^5.8.22",
+    "babel-loader": "^5.3.2",
     "chai": "^2.2.0",
     "mocha": "^2.2.1",
-    "xmlhttprequest": "^1.7.0"
+    "xmlhttprequest": "^1.7.0",
+    "@wix/wnpm-ci": "*"
   },
   "dependencies": {
     "lodash": "^3.9.3",
