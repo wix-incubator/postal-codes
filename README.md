@@ -27,10 +27,10 @@ postalCodes.area({
 });
 ```
 
-[downloads-image]: https://img.shields.io/npm/dm/postal-code.svg
+[downloads-image]: https://img.shields.io/npm/dm/postal-codes.svg
 
-[npm-url]: https://npmjs.org/package/postal-code
-[npm-image]: https://img.shields.io/npm/v/postal-code.svg
+[npm-url]: https://npmjs.org/package/postal-codes
+[npm-image]: https://img.shields.io/npm/v/postal-codes.svg
 
 ## Reporting Issues
 
