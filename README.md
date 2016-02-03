@@ -23,7 +23,7 @@ postalCodes.area({
 }).then(function(value) {
   value.countryCode; //-> "US"
   value.id;          //-> "90210"
-  value.polygons;    //-> array of polygons that represent this postal code
+  value.polygons;    //-> Array of polygons that represent this postal code
 });
 ```
 
