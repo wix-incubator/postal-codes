@@ -1,11 +1,9 @@
-var chai = require('chai');
-var expect = chai.expect;
-var assert = chai.assert;
-var PostalCodes = require("../src/PostalCodes.js");
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+import {assert, expect} from 'chai'
+import PostalCodes from '../src/PostalCodes'
+import {XMLHttpRequest} from 'xmlhttprequest'
 
 describe("PostalCodes", () => {
-	var postalCodes = new PostalCodes();
+	const postalCodes = new PostalCodes();
 	
 	describe("supportedCountries", () => {
 		it ('lists all supported countries', () => {
