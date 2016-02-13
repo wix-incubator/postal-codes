@@ -3,7 +3,7 @@ import PostalCodes from '../src/PostalCodes'
 import {XMLHttpRequest} from 'xmlhttprequest'
 
 describe("PostalCodes", () => {
-	const postalCodes = new PostalCodes();
+	const postalCodes = new PostalCodes({XMLHttpRequest});
 	
 	describe("supportedCountries", () => {
 		it ('lists all supported countries', () => {
@@ -22,8 +22,7 @@ describe("PostalCodes", () => {
 		it ('gracefully fails for unsupported country', () => {
 			return postalCodes.area({
 				countryCode: "XXX",
-				postalCode: "ignored",
-				XMLHttpRequest : XMLHttpRequest
+				postalCode: "ignored"
 			}).then((value) => {
 				// Unexpected success
 				assert.fail(`Invalid country returned ${JSON.stringify(value)}`);
@@ -35,8 +34,7 @@ describe("PostalCodes", () => {
 		it ('gracefully fails for unsupported postal code', () => {
 			return postalCodes.area({
 				countryCode: "US",
-				postalCode: "XXX",
-				XMLHttpRequest : XMLHttpRequest
+				postalCode: "XXX"
 			}).then((value) => {
 				// Unexpected success
 				assert.fail(`Invalid US postal code returned ${JSON.stringify(value)}`);
@@ -48,8 +46,7 @@ describe("PostalCodes", () => {
 		it ('successfully returns polygons for supported postal codes', () => {
 			return postalCodes.area({
 				countryCode: "US",
-				postalCode: "90210",
-				XMLHttpRequest : XMLHttpRequest
+				postalCode: "90210"
 			}).then((value) => {
 				expect(value.countryCode).to.be.equal("US");
 				expect(value.id).to.be.equal("90210");
@@ -63,8 +60,7 @@ describe("PostalCodes", () => {
 		it ('normalizes GB postal codes', () => {
 			return postalCodes.area({
 				countryCode: "GB",
-				postalCode: "aB11 6eQ",
-				XMLHttpRequest : XMLHttpRequest
+				postalCode: "aB11 6eQ"
 			}).then((value) => {
 				expect(value.countryCode).to.be.equal("GB");
 				expect(value.id).to.be.equal("AB11");

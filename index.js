@@ -1,1 +1,5 @@
-exports.PostalCodes = require("./src/PostalCodes.js");
+'use strict'
+
+import PostalCodes from './src/PostalCodes'
+
+export {PostalCodes}

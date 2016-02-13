@@ -1,69 +1,63 @@
-var Q = require('q');
-var _ = require('lodash');
+'use strict'
 
-module.exports = function(params) {
-	var supportedCountries = ["AU", "CA", "FR", "GB", "US"];
-	
-	function normalize(countryCode, postalCode) {
-		switch (countryCode) {
-			case "CA": // fall-through
-			case "GB":
-				return postalCode.trim().split(" ")[0].toUpperCase();
-			default:
-				return postalCode.trim();
-		}
+import Q from 'q'
+import _ from 'lodash'
+
+const supportedCountries = ['AU', 'CA', 'FR', 'GB', 'US']
+
+const normalize = (countryCode, postalCode) => {
+	switch (countryCode) {
+		case 'CA': // fall-through
+		case 'GB':
+			return postalCode.trim().split(' ')[0].toUpperCase()
+		default:
+			return postalCode.trim()
+	}
+}
+
+const getJsonUrl = (countryCode, postalCode) => {
+	return `https://storage.googleapis.com/postal-codes/${countryCode}/${normalize(countryCode, postalCode)}.json`
+}
+
+
+export default class PostalCodes {
+	constructor({XMLHttpRequest}) {
+		this._XMLHttpRequest = XMLHttpRequest
 	}
 	
-	function getJsonUrl(countryCode, postalCode) {
-		return "https://storage.googleapis.com/postal-codes/" + countryCode + "/" + normalize(countryCode, postalCode) + ".json";
-	}
-	
-	var self = {};
-	
-	self.supportedCountries = function() {
-		var deferred = Q.defer();
-		
-		deferred.resolve({
+	supportedCountries() {
+		return Q.resolve({
 			countryCodes: supportedCountries
-		});
-		
-		return deferred.promise;
-	};
+		})
+	}
 	
-	self.area = function(params) {
-		params = params || {};
-		var countryCode = params.countryCode;
-		var postalCode = params.postalCode;
-        var XMLHttpRequest = params.XMLHttpRequest || window.XMLHttpRequest;
-		
-		var deferred = Q.defer();
-		
+	area({countryCode, postalCode}) {
 		if (_(supportedCountries).includes(countryCode)) {
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {
+			const deferred = Q.defer()
+			const xhr = new this._XMLHttpRequest()
+			xhr.onreadystatechange = () => {
 				if (xhr.readyState == 4) {
 					if (xhr.status == 200) {
-						deferred.resolve(JSON.parse(xhr.responseText));
+						deferred.resolve(JSON.parse(xhr.responseText))
 					} else {
 						deferred.reject({
-							code: "invalid_postal_code",
-							message: "invalid postal code for " + countryCode + ": " + postalCode
-						});
+							code: 'invalid_postal_code',
+							message: `invalid postal code for ${countryCode}: ${postalCode}`
+						})
 					}
 				}
-			};
+			}
 			
-			xhr.open("GET", getJsonUrl(countryCode, postalCode), true);
-			xhr.send();			
+			xhr.open('GET', getJsonUrl(countryCode, postalCode), true)
+			xhr.send()
+			
+			return deferred.promise
 		} else {
-			deferred.reject({
-				code: "invalid_country",
-				message: "invalid country: " + countryCode
-			});
+			return Q.reject({
+				code: 'invalid_country',
+				message: `invalid country: ${countryCode}`
+			})
 		}
-		
-		return deferred.promise;
-	};
+	}
 	
-	return self;
-};
+}
