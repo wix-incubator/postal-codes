@@ -26,7 +26,7 @@ export default class PostalCodes {
 	}
 	
 	supportedCountries() {
-		return Q.resolve({
+		return Q({
 			countryCodes: supportedCountries
 		})
 	}
