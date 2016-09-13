@@ -1,3 +1,5 @@
+'use strict'
+
 import {assert, expect} from 'chai'
 import PostalCodes from '../src/PostalCodes'
 import {XMLHttpRequest} from 'xmlhttprequest'
