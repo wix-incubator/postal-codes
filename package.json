@@ -8,7 +8,7 @@
     "compile": "babel -d dist/ src/",
     "prepublish": "npm test && npm run compile",
     "build": ":",
-    "release": "wnpm-release -- --no-shrinkwrap"
+    "release": "npm install @wix/wnpm-ci && wnpm-release -- --no-shrinkwrap"
   },
   "repository": {
     "type": "git",
@@ -37,9 +37,6 @@
     "chai": "^2.2.0",
     "mocha": "^2.2.1",
     "xmlhttprequest": "^1.8.0"
-  },
-  "optionalDependencies": {
-    "@wix/wnpm-ci": "latest"
   },
   "dependencies": {
     "lodash": "^4.15.0",
