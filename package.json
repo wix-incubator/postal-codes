@@ -8,7 +8,7 @@
     "compile": "babel -d dist/ src/",
     "prepublish": "npm test && npm run compile",
     "build": ":",
-    "release": "npm install @wix/wnpm-ci && wnpm-release -- --no-shrinkwrap"
+    "release": "npm install wnpm-ci --no-save && wnpm-release -- --no-shrinkwrap"
   },
   "repository": {
     "type": "git",
